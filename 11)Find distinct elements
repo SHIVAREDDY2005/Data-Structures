@@ -1,0 +1,23 @@
+https://www.geeksforgeeks.org/problems/find-distinct-elements2054/1
+
+// User function Template for C++
+
+class Solution {
+  public:
+    int distinct(vector<vector<int>> M, int n) {
+        // code here
+        int c=0;
+        vector<int>arr(1001,0);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(arr[M[i][j]]==i){
+                    arr[M[i][j]]++;
+                }
+            }
+        }
+        for(int i:arr){
+            if(i==n)c++;
+        }
+        return c;
+    }
+};
