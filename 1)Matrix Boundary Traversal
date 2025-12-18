@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    vector<int> boundaryTraversal(vector<vector<int>>& mat) {
+        // code here
+        int n=mat.size();
+        int m=mat.size();
+        vector<int>arr;
+        for(int i=0;i<m;i++){
+            arr.push_back(mat[0][i]);
+        }
+        for(int i=1;i<n;i++){
+            arr.push_back(mat[i][m-1]);
+        }
+        for(int i=m-2;i>=0;i--){
+            arr.push_back(mat[n-1][i]);
+        }
+        for(int i=n-2;i>0;i--){
+            arr.push_back(mat[i][0]);
+        }
+        return arr;
+    }
+    
+};
