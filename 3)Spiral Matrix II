@@ -1,0 +1,33 @@
+#https://leetcode.com/problems/spiral-matrix-ii/
+
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        int left=0,top=0,c=1;
+        vector<vector<int>>arr(n,vector<int>(n));
+        int bottom=n-1,right=n-1;
+        while(left<=right && bottom>=top){
+            for(int i=left;i<=right;i++){
+                arr[top][i]=c++;
+            }
+            top++;
+            for(int i=top;i<=bottom;i++){
+                arr[i][right]=c++;
+            }
+            right--;
+            if(top<=bottom){
+                for(int i=right;i>=left;i--){
+                    arr[bottom][i]=c++;
+                }
+                bottom--;
+            }
+            if(left<=right){
+                for(int i=bottom;i>=top;i--){
+                    arr[i][left]=c++;
+                }
+                left++;
+            }
+        }
+        return arr;
+    }
+};
