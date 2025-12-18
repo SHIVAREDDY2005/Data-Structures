@@ -1,0 +1,15 @@
+https://leetcode.com/problems/snake-in-matrix/description/
+
+class Solution {
+public:
+    int finalPositionOfSnake(int n, vector<string>& commands) {
+        int c=0;
+        for(string s:commands){
+            if(s=="RIGHT")  c++;
+            else if(s=="LEFT")  c--;
+            else  if(s=="DOWN") c+=n;
+            else c-=n;
+        }   
+        return c;
+    }
+};
