@@ -1,0 +1,25 @@
+#https://leetcode.com/problems/search-a-2d-matrix-ii/
+
+// Staircase Search
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        // Staircase Search
+        int p1=0;
+        int p2=matrix[0].size()-1;
+        while(p1<matrix.size() && p2>=0){
+            cout<<matrix[p1][p2]<<" ";
+            if(matrix[p1][p2]==target){
+                return true;
+            }
+            else if(matrix[p1][p2]>target){
+                p2--;
+            }
+            else{
+                p1++;
+            }
+        }
+        return false;
+    }
+};
