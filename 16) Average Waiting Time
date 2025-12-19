@@ -1,0 +1,22 @@
+https://leetcode.com/problems/average-waiting-time/description/
+
+class Solution {
+public:
+    double averageWaitingTime(vector<vector<int>>& nums) {
+        int n=nums.size();
+        long long sum=0;
+        long long time=nums[0][0];
+        for(int i=0;i<n;i++){
+            if(nums[i][0]<=time){
+                time=time+nums[i][1];
+                sum+=time-nums[i][0];
+            }
+            else{
+                time=nums[i][0];
+                time+=nums[i][1];
+                sum+=time-nums[i][0];
+            }
+        }
+        return (double)sum/n;
+    }
+};
