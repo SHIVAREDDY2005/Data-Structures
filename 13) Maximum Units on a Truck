@@ -1,0 +1,27 @@
+https://leetcode.com/problems/maximum-units-on-a-truck/description/
+
+class Solution {
+public:
+    int maximumUnits(vector<vector<int>>& boxTypes, int si) {
+        int n=boxTypes.size();
+        for(int i=0;i<n;i++){
+            int  temp=boxTypes[i][0];
+            boxTypes[i][0]=boxTypes[i][1];
+            boxTypes[i][1]=temp;
+        }
+        int sum=0;
+        sort(boxTypes.begin(),boxTypes.end());
+        reverse(boxTypes.begin(),boxTypes.end());
+        for(int i=0;i<n;i++){
+            if(si>=boxTypes[i][1]){
+                sum+=boxTypes[i][0]*boxTypes[i][1];
+                si-=boxTypes[i][1];
+            }
+            else{
+                sum+=boxTypes[i][0]*si;
+                break;
+            }
+        }
+        return sum;
+    }
+};
