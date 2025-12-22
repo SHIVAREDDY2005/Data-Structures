@@ -1,0 +1,59 @@
+https://leetcode.com/problems/find-if-path-exists-in-graph/
+
+class Solution {
+public:
+    //TLE while sovling with edges
+    // void bfs(int n,vector<vector<int>>&edges,int st,int distination,vector<bool>&visited){
+    //     queue<int>q;
+    //     int cur=st;
+    //     q.push(cur);
+    //     while(!q.empty()){
+    //         cur=q.front();
+    //         visited[cur]=true;
+    //         q.pop();
+    //         for(auto it:edges){
+    //             if(cur==it[0] && !visited[it[1]]){
+    //                 q.push(it[1]);
+    //                 visited[it[1]]=true;
+
+    //             }
+    //             else if(cur==it[1] && !visited[it[0]]){
+    //                 q.push(it[0]);
+    //                 visited[it[0]]=true;
+    //             }
+    //             if(cur==distination)return;
+    //         }            
+    //     }
+
+    // }
+    // bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+    //     vector<bool>visited(n,false);
+    //     bfs(n,edges,source,destination,visited);
+    //     return visited[destination]?true:false;
+    // }
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        if(source==destination)return true;
+        vector<bool>visited(n,false);
+        vector<vector<int>>adj(n);
+        for(auto it:edges){
+            adj[it[0]].push_back(it[1]);
+            adj[it[1]].push_back(it[0]);
+        }
+        queue<int>q;
+        q.push(source);
+        visited[source]=true;
+        while(!q.empty()){
+            int cur=q.front();
+            visited[cur]=true;
+            q.pop();
+            for(auto i:adj[cur]){
+                if(!visited[i]){
+                    visited[i]=true;
+                    if(i==destination) return true;
+                    q.push(i);
+                }
+            }
+        }
+        return false;
+    }
+};
