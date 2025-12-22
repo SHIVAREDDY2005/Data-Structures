@@ -1,0 +1,24 @@
+https://leetcode.com/problems/keys-and-rooms/description
+
+class Solution {
+public:
+void dfs(vector<vector<int>>&rooms,int st,vector<int>&res,vector<bool>&visited){
+    res.push_back(st);
+    visited[st]=true;
+    for(auto it:rooms[st]){
+        if(!visited[it]){
+            dfs(rooms,it,res,visited);
+        }
+    }
+}
+    bool canVisitAllRooms(vector<vector<int>>& rooms) {
+        vector<int>res;
+        int n=rooms.size();
+        vector<bool>visited(n,false);
+        dfs(rooms,0,res,visited);
+        for(int it:visited){
+            if(!it)return false;
+        }
+        return true;
+    }
+};
