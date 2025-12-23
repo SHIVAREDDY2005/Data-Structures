@@ -4,33 +4,53 @@ public:
         queue<int>q;
         int n=graph.size();
         vector<bool>visited(n,false);
-        set<int>s1;
-        set<int>s2;
+        vector<int>col(n,-1);
         for(int i=0;i<n;i++){
-            if(visited[i])continue;
-            int st=i;
-            s1.insert(st);
-            q.push(st);
+            if(col[i]!=-1)continue;
+            q.push(i);
+            col[0]=0;
             while(!q.empty()){
                 int cur=q.front();
-                visited[cur]=true;
                 q.pop();
                 for(auto it:graph[cur]){
-                    if(!visited[it]){
-                        visited[it]=true;
+                    if(col[it]==-1){
+                        col[it]=1-col[cur];
                         q.push(it);
                     }
-                    if(s1.count(cur)){
-                        if(s1.count(it))return false;
-                        s2.insert(it);
-                    }
-                    else if(s2.count(cur)){
-                        if(s2.count(it))return false;
-                        s1.insert(it);
+                    else if(col[it]==col[cur]){
+                        return false;
                     }
                 }
             }
         }
         return true;
+        // set<int>s1;
+        // set<int>s2;
+        // for(int i=0;i<n;i++){
+        //     if(visited[i])continue;
+        //     int st=i;
+        //     s1.insert(st);
+        //     q.push(st);
+        //     while(!q.empty()){
+        //         int cur=q.front();
+        //         visited[cur]=true;
+        //         q.pop();
+        //         for(auto it:graph[cur]){
+        //             if(!visited[it]){
+        //                 visited[it]=true;
+        //                 q.push(it);
+        //             }
+        //             if(s1.count(cur)){
+        //                 if(s1.count(it))return false;
+        //                 s2.insert(it);
+        //             }
+        //             else if(s2.count(cur)){
+        //                 if(s2.count(it))return false;
+        //                 s1.insert(it);
+        //             }
+        //         }
+        //     }
+        // }
+        // return true;
     }
 };
