@@ -1,3 +1,5 @@
+//https://codestudio-infra.codingninjas.com/studio/problems/is-it-a-tree_630511?interviewProblemRedirection=true&search=is%20it%20a%20tree&leftPanelTabValue=PROBLEM
+
 #include <iostream>
 using namespace std;
 #include<bits/stdc++.h>
